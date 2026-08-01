@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int pin;
+char name[50];
+int deposit;
+int account_num;
+int c_number;
+int c_pin;
+int total_amount;
+int type[100];
+int amount[100];
+int count = 0;
+
+int depositt(){
+    printf("enter deposit amount:\n");
+    scanf("%d",&deposit);
+    total_amount=deposit+total_amount;
+    type[count]=1;     
+    amount[count]=deposit;
+    count++;
+}
+
+int withdraw(){
+    int withdraww;
+    printf("enter withdraw amount:\n");
+    scanf("%d",&withdraww);
+    total_amount-=withdraww;
+    type[count] = 2;     
+    amount[count] = withdraww;
+    count++;
+}
+
+
+int check_balance(){
+    printf("Toal amount is:%d",total_amount);
+}
+
+int transfer(){
+    int t_amount;
+    printf("Enter transfer amount:\n");
+    scanf("%d",&t_amount);
+    total_amount-=t_amount;
+    type[count] = 3;    
+    amount[count] = t_amount;
+    count++;
+    
+}
+int changepin(){
+    int new_pin;
+    printf("Enter previous pin :");
+    scanf("%d",&pin);
+    printf("Enter current pin :");
+    scanf("%d",&new_pin);
+    pin=new_pin;
+    printf("pin changed sucessfully!\n");
+    
+}
+int account_details(){
+    printf("Enter account number:");
+    scanf("%d",&account_num);
+     printf("Enter pin :");
+    scanf("%d",&pin);
+    printf("-----------------");
+    printf("\nACCOUNT DEAIALS\n");
+    printf("-----------------");
+    printf("\nNAME:\t%s",name);
+    printf("\nACCOUNT NUMBER:\t%d",account_num);
+    printf("\nBALANCE :\t%d",total_amount);
+}
+int mini_statement()
+{
+    int i;
+    printf("\n--------------------------");
+    printf("\n  MINI STATEMENT");
+    printf("\n--------------------------");
+    printf("\nName  : %s", name);
+    printf("\nAccount Number : %d", account_num);
+    printf("\nBalance  : %d", total_amount);
+
+    printf("\nTransactions:\n");
+
+    for(i=0;i<count;i++)
+    {
+        if(type[i] == 1)
+            printf("Deposit  : %d\n", amount[i]);
+        else if(type[i] == 2)
+            printf("Withdraw : %d\n", amount[i]);
+        else if(type[i] == 3)
+            printf("Transfer : %d\n", amount[i]);
+    }
+
+    printf("--------------------------\n");
+}
